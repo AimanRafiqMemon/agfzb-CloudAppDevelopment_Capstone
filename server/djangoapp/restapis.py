@@ -62,7 +62,7 @@ def get_dealers_from_cf(url, **kwargs):
 
     if json_result:
         # Get the row list in JSON as dealers
-        dealers = json_result["body"]["rows"]
+        dealers = json_result["body"]
         # For each dealer object
         for dealer in dealers:
             # Get its content in `doc` object
@@ -85,7 +85,7 @@ def get_dealer_by_id_from_cf(url, id):
         dealers = json_result["body"]
         
     
-        dealer_doc = dealers["docs"][0]
+        dealer_doc = dealers[0]
         dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],
                                 id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
                                 
@@ -124,7 +124,7 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             #review_obj.sentiment = sentiment
             #results.append(review_obj)
 
-    return resultss
+    return results
 
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
