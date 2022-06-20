@@ -98,7 +98,7 @@ def get_dealerships(request):
 def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://01049230.eu-de.apigw.appdomain.cloud/api/dealership"
+        dealer_url = "https://01049230.eu-de.apigw.appdomain.cloud/api/dealerships"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
     
