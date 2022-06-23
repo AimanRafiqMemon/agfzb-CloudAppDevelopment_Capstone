@@ -78,7 +78,11 @@ def registration_request(request):
         if not user_exist:
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
+            user.is_superuser = True
+            user.is_staff=True
+            user.save() 
             login(request, user)
+            
             return redirect("djangoapp:index")
         else:
             context['message'] = "User already exists."
@@ -117,7 +121,7 @@ def add_review(request, id):
     context["dealer"] = dealer
     if request.method == 'GET':
         # Get cars for the dealer
-        cars = CarModel.objects.filter(id=id)
+        cars = CarModel.objects.all()
         print(cars)
         context["cars"] = cars
         
@@ -142,9 +146,10 @@ def add_review(request, id):
             payload["car_make"] = car.make.name
             payload["car_model"] = car.name
             payload["car_year"] = int(car.year.strftime("%Y"))
+
             new_payload = {}
             new_payload["review"] = payload
-            review_post_url = "01049230.eu-de.apigw.appdomain.cloud/api3/postreviews"
+            review_post_url = "https://01049230.eu-de.apigw.appdomain.cloud/api3/postreviews"
             post_request(review_post_url, new_payload, id=id)
         return redirect("djangoapp:dealer_details", id=id)
 

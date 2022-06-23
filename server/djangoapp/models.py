@@ -50,7 +50,7 @@ class CarModel(models.Model):
         choices=CAR_TYPES,
         default=SEDAN
     )
-    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    make = models.ForeignKey(CarMake, null=False, on_delete=models.CASCADE) 
     year = models.DateField(default=now)
 
     def __str__(self):
