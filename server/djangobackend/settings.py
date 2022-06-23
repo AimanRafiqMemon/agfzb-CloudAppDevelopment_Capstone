@@ -28,7 +28,7 @@ DEBUG = True
 APPEND_SLASH = True
 
 ALLOWED_HOSTS = ["localhost", "ARapp.eu-de.cf.appdomain.cloud"]
-
+CSRF_TRUSTED_ORIGINS = ['https://saramekael03-8000.theiadocker-3-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',"https://e31fa4da-4f2c-4e90-846d-9e4dccf91b27-bluemix.cloudant.com/",'https://*.127.0.0.1']
 
 # Application definition
 
